@@ -14,5 +14,6 @@ public class App {
     while (prog.run()) {
 
     }
+    scanner.close();
   }
 }

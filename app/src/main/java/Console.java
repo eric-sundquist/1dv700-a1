@@ -11,14 +11,6 @@ public class Console {
     System.out.println(message);
   }
 
-  /**
-   * Prompt user for a positive integer.
-   *
-   * @param message  - message to display.
-   * @param minValue - input min value.
-   * @param maxValue - input max value
-   * @return the choosen integer.
-   */
   public int promptUserPosInt(String message, int minValue, int maxValue) {
     int number;
     do {
