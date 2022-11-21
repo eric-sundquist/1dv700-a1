@@ -17,13 +17,14 @@ public class App {
     // scanner.close();
 
     TransEncryp e = new TransEncryp();
-    e.setKey("KANELBULLE");
-    String cipher = e.encrypt("Laban snaskar balle");
+    e.setKey("KalleKuling");
+    String cipher = e
+        .encrypt("Jag heter kalle anka jag surfar 9or på @rumoa nada. Kanska vi kan ta en flasska kanske någon gång.");
     System.out.println(cipher);
-    System.out.println("cipher length:");
+
     System.out.println(cipher.length());
-    // String kk = e.decrypt(cipher);
-    // System.out.println(kk);
-    // System.out.println(kk.length());
+    String kk = e.decrypt(cipher);
+    System.out.println(kk);
+    System.out.println(kk.length());
   }
 }

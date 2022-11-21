@@ -41,23 +41,34 @@ public class TransEncryp {
     for (int i = 0; i < cols; i++) {
       ArrayList<Character> col = new ArrayList<>();
       for (int j = 0; j < rows; j++) {
-        col.add(cipher.charAt((key.length() * i + j)));
+        char c = cipher.charAt((rows * i + j));
+        col.add(c);
       }
       matrix.add(col);
     }
 
     String plainText = "";
     String sortedKey = keyAlphaOrder();
+    int col = 0;
 
-    for (int j = 0; j < rows; j++) {
-      for (int i = 0; i < cols; i++) {
-        int col = sortedKey.indexOf(key.charAt(i));
-        ArrayList<Character> chars = matrix.get(col);
-        plainText += chars.get(j);
+    for (int row = 0; row < rows; row++) {
+      char sortedKeyArr[] = sortedKey.toCharArray();
+      for (int i = 0; i < key.length(); i++) {
+        char c = key.charAt(i);
+
+        // hitta index char i keyArr
+        for (int j = 0; j < sortedKeyArr.length; j++) {
+          if (sortedKeyArr[j] == c) {
+            sortedKeyArr[j] = ' ';
+            col = j;
+            break;
+          }
+        }
+        char ch = matrix.get(col).get(row);
+        plainText += ch;
       }
     }
     return plainText.trim();
-
   }
 
   private ArrayList<ArrayList<Character>> getMatrix(String text) {
@@ -81,10 +92,6 @@ public class TransEncryp {
 
     return matrix;
   }
-  // private void printMatrix(ArrayList<ArrayList<Character>> matrix) {
-  // System.out.println();
-
-  // }
 
   private String keyAlphaOrder() {
     char keyArr[] = key.toCharArray();
