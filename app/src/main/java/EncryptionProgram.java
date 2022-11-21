@@ -1,6 +1,5 @@
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
 
 public class EncryptionProgram {
   Console view;
@@ -11,30 +10,38 @@ public class EncryptionProgram {
   }
 
   public boolean run() {
-    view.print("--- Encryption program ---");
-    getFilePath();
-    String text = readTextFile();
+    try {
+      view.print("\n\n--- Encryption program ---");
+      getFilePath();
+      String text = readTextFile();
 
-    if (isTransposition()) {
-      text = doTransposition(text, isEncryption());
-    } else {
-      text = doSubstitution(text, isEncryption());
+      if (isTransposition()) {
+        System.out.println(text.length());
+        text = doTransposition(text, isEncryption());
+        System.out.println(text.length());
+      } else {
+        text = doSubstitution(text, isEncryption());
+      }
+
+      writeToTextFile(text);
+
+      return true;
+
+    } catch (Exception e) {
+      view.print(e.getMessage());
+      return true;
     }
-
-    writeToTextFile(text);
-
-    return true;
   }
 
   private String doTransposition(String text, boolean isEncryption) {
     TransEncryp transEncryp = new TransEncryp();
-    transEncryp.setKey(view.promptUserString("Enter key. A string between 3-15 chars"));
+    transEncryp.setKey(view.promptUserString(
+        "Key may only contain characters from latin alphabet (a-z) with a length between 3 and 15. \nEnter key: "));
 
     if (isEncryption) {
       return transEncryp.encrypt(text);
     } else {
-      // return transEncryp.decrypt(text);
-      return "";
+      return transEncryp.decrypt(text);
     }
   }
 
@@ -67,7 +74,7 @@ public class EncryptionProgram {
 
   private void writeToTextFile(String text) {
     try {
-      Files.writeString(filePath, text, StandardOpenOption.WRITE);
+      Files.writeString(filePath, text);
     } catch (Exception e) {
       // TODO: handle exception
     }

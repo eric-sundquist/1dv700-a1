@@ -33,6 +33,28 @@ public class TransEncryp {
     return cipher;
   }
 
+  private ArrayList<ArrayList<Character>> getMatrix(String text) {
+    int cols = key.length();
+    int rows = (int) Math.ceil(text.length() / (double) cols);
+    ArrayList<ArrayList<Character>> matrix = new ArrayList<ArrayList<Character>>();
+
+    // Fill key column arrs with message
+    for (int i = 0; i < cols; i++) {
+      ArrayList<Character> col = new ArrayList<>();
+      for (int j = 0; j < rows; j++) {
+        int charIndex = i + (cols * j);
+        if (charIndex < text.length()) {
+          col.add(text.charAt(charIndex));
+        } else {
+          col.add(' ');
+        }
+      }
+      matrix.add(col);
+    }
+
+    return matrix;
+  }
+
   public String decrypt(String cipher) {
     ArrayList<ArrayList<Character>> matrix = new ArrayList<ArrayList<Character>>();
     int cols = key.length();
@@ -68,29 +90,13 @@ public class TransEncryp {
         plainText += ch;
       }
     }
-    return plainText.trim();
-  }
-
-  private ArrayList<ArrayList<Character>> getMatrix(String text) {
-    int cols = key.length();
-    int rows = (int) Math.ceil(text.length() / (double) cols);
-    ArrayList<ArrayList<Character>> matrix = new ArrayList<ArrayList<Character>>();
-
-    // Fill key column arrs with message
-    for (int i = 0; i < cols; i++) {
-      ArrayList<Character> col = new ArrayList<>();
-      for (int j = 0; j < rows; j++) {
-        int charIndex = i + (cols * j);
-        if (charIndex < text.length()) {
-          col.add(text.charAt(charIndex));
-        } else {
-          col.add(' ');
-        }
-      }
-      matrix.add(col);
-    }
-
-    return matrix;
+    return plainText.stripTrailing();
+    // trim padding '_'
+    //
+    // String lastRow = plainText.substring(plainText.length() - rows);
+    // lastRow = lastRow.replace("_", "");
+    // plainText = plainText.substring(0, plainText.length() - rows - 1);
+    // return plainText + lastRow;
   }
 
   private String keyAlphaOrder() {

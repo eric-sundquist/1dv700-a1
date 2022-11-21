@@ -7,24 +7,25 @@ import java.util.Scanner;
 public class App {
 
   public static void main(String[] args) {
-    // Scanner scanner = new Scanner(System.in, "UTF8");
-    // Console v = new Console(scanner);
-    // EncryptionProgram prog = new EncryptionProgram(v);
+    Scanner scanner = new Scanner(System.in, "UTF8");
+    Console v = new Console(scanner);
+    EncryptionProgram prog = new EncryptionProgram(v);
 
-    // while (prog.run()) {
+    while (prog.run()) {
 
-    // }
-    // scanner.close();
+    }
+    scanner.close();
 
-    TransEncryp e = new TransEncryp();
-    e.setKey("KalleKuling");
-    String cipher = e
-        .encrypt("Jag heter kalle anka jag surfar 9or på @rumoa nada. Kanska vi kan ta en flasska kanske någon gång.");
-    System.out.println(cipher);
+    // TransEncryp e = new TransEncryp();
+    // e.setKey("KalleKuling");
+    // String cipher = e
+    // .encrypt("Jag heter kalle anka jag surfar 9or på @rumoa nada. Kanska vi kan
+    // ta en flasska kanske någon gång.");
+    // System.out.println(cipher);
 
-    System.out.println(cipher.length());
-    String kk = e.decrypt(cipher);
-    System.out.println(kk);
-    System.out.println(kk.length());
+    // System.out.println(cipher.length());
+    // String kk = e.decrypt(cipher);
+    // System.out.println(kk);
+    // System.out.println(kk.length());
   }
 }
