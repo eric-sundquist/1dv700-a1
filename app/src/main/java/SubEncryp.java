@@ -2,16 +2,11 @@ import java.util.stream.IntStream;
 
 public class SubEncryp {
   private int key;
-  // TODO Möjligt att skippa denna och bara få decimal värde av utf-8 direkt från
-  // char istället?
   String charStr = new String(IntStream.rangeClosed(0, 127).toArray(), 0, 128);
-  // String charStr = "abcdefghijklmnopqrstuvwxyz";
   char[] charSet = charStr.toCharArray();
 
   public String encrypt(String plainText) {
     String cipher = "";
-
-    // skapa substitut för det charsettet
     char[] chars = plainText.toCharArray();
 
     for (char c : chars) {
@@ -47,10 +42,6 @@ public class SubEncryp {
     }
 
     return plainText;
-  }
-
-  public int getKey() {
-    return key;
   }
 
   public void setKey(int key) {

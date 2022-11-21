@@ -16,7 +16,7 @@ public class EncryptionProgram {
     String text = readTextFile();
 
     if (isTransposition()) {
-      // do transpos
+      text = doTransposition(text, isEncryption());
     } else {
       text = doSubstitution(text, isEncryption());
     }
@@ -24,6 +24,18 @@ public class EncryptionProgram {
     writeToTextFile(text);
 
     return true;
+  }
+
+  private String doTransposition(String text, boolean isEncryption) {
+    TransEncryp transEncryp = new TransEncryp();
+    transEncryp.setKey(view.promptUserString("Enter key. A string between 3-15 chars"));
+
+    if (isEncryption) {
+      return transEncryp.encrypt(text);
+    } else {
+      // return transEncryp.decrypt(text);
+      return "";
+    }
   }
 
   private String doSubstitution(String text, boolean isEncryption) {

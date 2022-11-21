@@ -7,13 +7,23 @@ import java.util.Scanner;
 public class App {
 
   public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in, "UTF8");
-    Console v = new Console(scanner);
-    EncryptionProgram prog = new EncryptionProgram(v);
+    // Scanner scanner = new Scanner(System.in, "UTF8");
+    // Console v = new Console(scanner);
+    // EncryptionProgram prog = new EncryptionProgram(v);
 
-    while (prog.run()) {
+    // while (prog.run()) {
 
-    }
-    scanner.close();
+    // }
+    // scanner.close();
+
+    TransEncryp e = new TransEncryp();
+    e.setKey("KANELBULLE");
+    String cipher = e.encrypt("Laban snaskar balle");
+    System.out.println(cipher);
+    System.out.println("cipher length:");
+    System.out.println(cipher.length());
+    // String kk = e.decrypt(cipher);
+    // System.out.println(kk);
+    // System.out.println(kk.length());
   }
 }
