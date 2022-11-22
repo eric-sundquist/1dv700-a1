@@ -16,9 +16,7 @@ public class EncryptionProgram {
       String text = readTextFile();
 
       if (isTransposition()) {
-        System.out.println(text.length());
         text = doTransposition(text, isEncryption());
-        System.out.println(text.length());
       } else {
         text = doSubstitution(text, isEncryption());
       }
@@ -57,7 +55,8 @@ public class EncryptionProgram {
   }
 
   private void getFilePath() {
-    filePath = Path.of(view.promptUserString("Enter absolute path (ex. /Users/ericsundquist/Desktop/text.txt): \n"));
+    filePath = Path
+        .of(view.promptUserString("Enter absolute path from root (ex. /Users/ericsundquist/Desktop/text.txt): \n"));
   }
 
   private String readTextFile() {
@@ -67,7 +66,6 @@ public class EncryptionProgram {
     try {
       content = Files.readString(filePath);
     } catch (Exception e) {
-      // TODO: handle exception
     }
     return content;
   }
@@ -76,7 +74,6 @@ public class EncryptionProgram {
     try {
       Files.writeString(filePath, text);
     } catch (Exception e) {
-      // TODO: handle exception
     }
   }
 
